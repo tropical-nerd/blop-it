@@ -19,10 +19,15 @@
 				newRound();
 			}
 		} else {
-			note= 'Missed it! You gotta start over'
+			note= 'Missed it! You gotta start over';
+			newGame();
 		}
 	}
 	
+	function newGame() {
+		round = 0;
+	}
+
 	function newRound() {
 		note = '';
 		round += 1;
@@ -62,19 +67,37 @@
 	.action-btn-1 {background-color: #3355FF}
 	.action-btn-2 {background-color: #FFFF33; color: #111111}
 	.action-btn-3 {background-color: #33FFFF; color: #111111}
+
+	.round-counter {
+		background-color: green;
+		color: white;
+		font-family: Impact;
+		display: flex;
+		flex-direction: column;
+		width: 6em;
+		text-align: center;
+		padding-top: .5em;
+	}
+	.round-number {
+		font-size: 3em;
+		margin-bottom: .125em;
+	}
+	.start-button {
+		display: block;
+		margin-bottom: 0;
+	}
 </style>
 
 <h1>Blop It!</h1>
 
 	<aside class="round-counter">
-		Round<span>{round}</span>
+		Round<span class="round-number">{round}</span>
 		{#if !round}
-			<button on:click={() => newRound()}>
-				Start	Game
+			<button class="start-button" on:click={() => newRound()}>
+				Start Game
 			</button>
 		{/if}
 	</aside>
-
 
 <ul>
 	{#each commandList as actionIndex}
